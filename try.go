@@ -20,6 +20,7 @@ func (d *DefaultException) Try(err error) {
 }
 
 func (d *DefaultException) Catching() error {
+
 	fmt.Println(d.Error())
 	return nil
 }

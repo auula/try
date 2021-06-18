@@ -13,8 +13,7 @@ import (
 func TestDo(t *testing.T) {
 	ex := new(DefaultException)
 	Do(func() error {
-		i := 0 / 1
-		t.Log(i)
+		panic("错误捕获")
 		return nil
 	}, ex).Catch()
 }
