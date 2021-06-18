@@ -16,7 +16,7 @@ type DefaultException struct {
 }
 
 func (d *DefaultException) Try(err error) {
-	panic("implement me")
+	d.Err = err
 }
 
 func (d *DefaultException) Catching() error {
