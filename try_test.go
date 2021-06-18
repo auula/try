@@ -7,14 +7,14 @@
 package try
 
 import (
-	"errors"
 	"testing"
 )
 
 func TestDo(t *testing.T) {
+	ex := new(DefaultException)
 	Do(func() error {
-		return errors.New("1111")
-	}).Catch(func(exception DefaultException) {
-		aa
-	})
+		i := 0 / 1
+		t.Log(i)
+		return nil
+	}, ex).Catch()
 }

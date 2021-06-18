@@ -1,33 +1,38 @@
 package try
 
+import "fmt"
+
 type Method func() error
 
 type Exception interface {
-	Catch(fn func(ex Exception))
+	Catch()
 	Error() error
+	Try(err error)
+	Catching() error
 }
 
 type DefaultException struct {
-	err error
+	Err error
 }
 
-func (d *DefaultException) Catch(fn func(ex Exception)) {
+func (d *DefaultException) Try(err error) {
+	panic("implement me")
+}
 
+func (d *DefaultException) Catching() error {
+	fmt.Println(d.Error())
+	return nil
+}
+
+func (d *DefaultException) Catch() {
+	_ = d.Catching()
 }
 
 func (d *DefaultException) Error() error {
-	return d.err
+	return d.Err
 }
 
-func Do(m Method) Exception {
-	var exception DefaultException
-	err := m()
-	if err != nil {
-		exception.err = err
-	}
-	return &exception
-}
-
-func Catch(ex Exception) error {
-	return nil
+func Do(m Method, ex Exception) Exception {
+	ex.Try(m())
+	return ex
 }
